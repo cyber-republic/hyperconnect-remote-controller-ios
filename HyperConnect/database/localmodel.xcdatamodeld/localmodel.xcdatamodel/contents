@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14490.98" systemVersion="18D109" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Attribute" representedClassName="Attribute" syncable="YES" codeGenerationType="class">
+        <attribute name="direction" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="edgeAttributeId" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="edgeSensorId" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="interval" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="scriptState" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="state" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="categories" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CategoryRecord" inverseName="attribute" inverseEntity="CategoryRecord" syncable="YES"/>
+        <relationship name="device" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Device" inverseName="attributes" inverseEntity="Device" syncable="YES"/>
+        <relationship name="sensor" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Sensor" inverseName="attributes" inverseEntity="Sensor" syncable="YES"/>
+    </entity>
+    <entity name="Category" representedClassName="Category" syncable="YES" codeGenerationType="class">
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="CategoryRecord" representedClassName="CategoryRecord" syncable="YES" codeGenerationType="class">
+        <attribute name="deviceUserId" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="attribute" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Attribute" inverseName="categories" inverseEntity="Attribute" syncable="YES"/>
+        <relationship name="category" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Category" syncable="YES"/>
+    </entity>
+    <entity name="DataRecord" representedClassName="DataRecord" syncable="YES" codeGenerationType="class">
+        <attribute name="dateTime" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="deviceUserId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="edgeAttributeId" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="value" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="Device" representedClassName="Device" syncable="YES" codeGenerationType="class">
+        <attribute name="address" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="connectionState" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="state" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="userId" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="attributes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Attribute" inverseName="device" inverseEntity="Attribute" syncable="YES"/>
+        <relationship name="sensors" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Sensor" inverseName="device" inverseEntity="Sensor" syncable="YES"/>
+    </entity>
+    <entity name="Event" representedClassName="Event" syncable="YES" codeGenerationType="class">
+        <attribute name="actionDeviceUserId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="actionEdgeAttributeId" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="actionEdgeSensorId" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="average" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="condition" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="conditionValue" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="globalEventId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="sourceDeviceUserId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="sourceEdgeAttributeId" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="sourceEdgeSensorId" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="state" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="triggerValue" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+    </entity>
+    <entity name="Notification" representedClassName="Notification" syncable="YES" codeGenerationType="class">
+        <attribute name="category" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="dateTime" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="deviceUserId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="edgeNotificationId" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="edgeThingId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="message" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+    </entity>
+    <entity name="Sensor" representedClassName="Sensor" syncable="YES" codeGenerationType="class">
+        <attribute name="edgeSensorId" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="attributes" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Attribute" inverseName="sensor" inverseEntity="Attribute" syncable="YES"/>
+        <relationship name="device" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Device" inverseName="sensors" inverseEntity="Device" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Attribute" positionX="-36" positionY="45" width="128" height="210"/>
+        <element name="Category" positionX="-54" positionY="135" width="128" height="60"/>
+        <element name="CategoryRecord" positionX="-45" positionY="144" width="128" height="90"/>
+        <element name="Device" positionX="-63" positionY="-18" width="128" height="150"/>
+        <element name="Event" positionX="-54" positionY="90" width="128" height="255"/>
+        <element name="Notification" positionX="-45" positionY="144" width="128" height="150"/>
+        <element name="Sensor" positionX="-54" positionY="27" width="128" height="120"/>
+        <element name="DataRecord" positionX="-45" positionY="135" width="128" height="105"/>
+    </elements>
+</model>
