@@ -29,13 +29,6 @@ class ViewController: UIViewController {
         
         initBottomBar()
         initPageController()
-        
-        /*let localRepository=LocalRepository.sharedInstance
-        let deviceList=localRepository.getDeviceList()
-        for device in deviceList {
-            localRepository.deleteDevice(device: device)
-            localRepository.updateDatabase()
-        }*/
     }
     
     func initBottomBar(){

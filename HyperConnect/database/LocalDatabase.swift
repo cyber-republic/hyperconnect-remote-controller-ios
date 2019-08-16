@@ -73,6 +73,15 @@ class LocalDatabase {
         dataController.viewContext.delete(device)
     }
     
+    func getSensorList() -> [Sensor] {
+        var sensorList:[Sensor]=[]
+        let fetchRequest:NSFetchRequest<Sensor>=Sensor.fetchRequest()
+        if let result=try? dataController.viewContext.fetch(fetchRequest) {
+            sensorList=result.reversed()
+        }
+        return sensorList
+    }
+    
     func getSensorListByDevice(device: Device) -> [Sensor] {
         var sensorList:[Sensor]=[]
         let fetchRequest:NSFetchRequest<Sensor>=Sensor.fetchRequest()
@@ -101,6 +110,15 @@ class LocalDatabase {
     
     func deleteSensor(sensor: Sensor) {
         dataController.viewContext.delete(sensor)
+    }
+    
+    func getAttributeList() -> [Attribute] {
+        var attributeList:[Attribute]=[]
+        let fetchRequest:NSFetchRequest<Attribute>=Attribute.fetchRequest()
+        if let result=try? dataController.viewContext.fetch(fetchRequest) {
+            attributeList=result.reversed()
+        }
+        return attributeList
     }
     
     func getAttributeByEdgeAttributeIdDevice(edgeAttributeId: Int64, device: Device) -> Attribute? {
@@ -162,19 +180,6 @@ class LocalDatabase {
         return event
     }
     
-    func deleteEvent(event: Event) {
-        dataController.viewContext.delete(event)
-    }
-    
-    func getNotificationList() -> [Notification] {
-        var notificationList:[Notification]=[]
-        let fetchRequest:NSFetchRequest<Notification>=Notification.fetchRequest()
-        if let result=try? dataController.viewContext.fetch(fetchRequest) {
-            notificationList=result.reversed()
-        }
-        return notificationList
-    }
-    
     func getEventList() -> [Event] {
         var eventList:[Event]=[]
         let fetchRequest:NSFetchRequest<Event>=Event.fetchRequest()
@@ -182,6 +187,40 @@ class LocalDatabase {
             eventList=result.reversed()
         }
         return eventList
+    }
+    
+    func getEventListByDevice(device: Device) -> [Event] {
+        var eventList:[Event]=[]
+        let fetchRequest:NSFetchRequest<Event>=Event.fetchRequest()
+        let sourceDevicePredicate=NSPredicate(format: "sourceDeviceUserId==%@", device.userId!)
+        let actionDevicePredicate=NSPredicate(format: "actionDeviceUserId==%@", device.userId!)
+        let orPredicate=NSCompoundPredicate(type: NSCompoundPredicate.LogicalType.or, subpredicates: [sourceDevicePredicate, actionDevicePredicate])
+        fetchRequest.predicate=orPredicate
+        if let result=try? dataController.viewContext.fetch(fetchRequest) {
+            eventList=result.reversed()
+        }
+        return eventList
+    }
+    
+    func getEventListByAttribute(attribute: Attribute) -> [Event] {
+        var eventList:[Event]=[]
+        let fetchRequest:NSFetchRequest<Event>=Event.fetchRequest()
+        let sourceDevicePredicate=NSPredicate(format: "sourceDeviceUserId==%@", attribute.device!.userId!)
+        let actionDevicePredicate=NSPredicate(format: "actionDeviceUserId==%@", attribute.device!.userId!)
+        let deviceOrPredicate=NSCompoundPredicate(type: NSCompoundPredicate.LogicalType.or, subpredicates: [sourceDevicePredicate, actionDevicePredicate])
+        let sourceAttributePredicate=NSPredicate(format: "sourceDeviceUserId==%@", attribute.device!.userId!)
+        let actionAttributePredicate=NSPredicate(format: "actionDeviceUserId==%@", attribute.device!.userId!)
+        let attributeOrPredicate=NSCompoundPredicate(type: NSCompoundPredicate.LogicalType.or, subpredicates: [sourceAttributePredicate, actionAttributePredicate])
+        let andPredicate=NSCompoundPredicate(type: NSCompoundPredicate.LogicalType.or, subpredicates: [deviceOrPredicate, attributeOrPredicate])
+        fetchRequest.predicate=andPredicate
+        if let result=try? dataController.viewContext.fetch(fetchRequest) {
+            eventList=result.reversed()
+        }
+        return eventList
+    }
+    
+    func deleteEvent(event: Event) {
+        dataController.viewContext.delete(event)
     }
     
     func getCategoryList() -> [Category] {
@@ -222,6 +261,19 @@ class LocalDatabase {
         return categoryRecordList
     }
     
+    func getCategoryRecordListByAttribute(attribute: Attribute) -> [CategoryRecord] {
+        var categoryRecordList:[CategoryRecord]=[]
+        let fetchRequest:NSFetchRequest<CategoryRecord>=CategoryRecord.fetchRequest()
+        let attributePredicate=NSPredicate(format: "attribute.edgeAttributeId==%i", attribute.edgeAttributeId)
+        let devicePredicate=NSPredicate(format: "deviceUserId=%@", attribute.device!.userId!)
+        let andPredicate=NSCompoundPredicate(type: NSCompoundPredicate.LogicalType.and, subpredicates: [attributePredicate, devicePredicate])
+        fetchRequest.predicate=andPredicate
+        if let result=try? dataController.viewContext.fetch(fetchRequest) {
+            categoryRecordList=result.reversed()
+        }
+        return categoryRecordList
+    }
+    
     func deleteCategoryRecord(categoryRecord: CategoryRecord) {
         dataController.viewContext.delete(categoryRecord)
     }
@@ -239,5 +291,31 @@ class LocalDatabase {
             }
         }
         return dataRecord
+    }
+    
+    func getDataRecordListByAttribute(attribute: Attribute) -> [DataRecord] {
+        var dataRecordList:[DataRecord]=[]
+        let fetchRequest:NSFetchRequest<DataRecord>=DataRecord.fetchRequest()
+        let attributePredicate=NSPredicate(format: "attribute.edgeAttributeId==%i", attribute.edgeAttributeId)
+        let devicePredicate=NSPredicate(format: "deviceUserId=%@", attribute.device!.userId!)
+        let andPredicate=NSCompoundPredicate(type: NSCompoundPredicate.LogicalType.and, subpredicates: [attributePredicate, devicePredicate])
+        fetchRequest.predicate=andPredicate
+        if let result=try? dataController.viewContext.fetch(fetchRequest) {
+            dataRecordList=result.reversed()
+        }
+        return dataRecordList
+    }
+    
+    func deleteDataRecord(dataRecord: DataRecord) {
+        dataController.viewContext.delete(dataRecord)
+    }
+    
+    func getNotificationList() -> [Notification] {
+        var notificationList:[Notification]=[]
+        let fetchRequest:NSFetchRequest<Notification>=Notification.fetchRequest()
+        if let result=try? dataController.viewContext.fetch(fetchRequest) {
+            notificationList=result.reversed()
+        }
+        return notificationList
     }
 }

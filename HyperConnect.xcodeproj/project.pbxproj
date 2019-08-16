@@ -363,6 +363,7 @@
 				7BCCB16622DA7053003F632C /* Frameworks */,
 				7BCCB16722DA7053003F632C /* Resources */,
 				48A110E1BF4243AB177897F4 /* [CP] Embed Pods Frameworks */,
+				7B38E15523070BF200D65CFC /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -454,6 +455,23 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-HyperConnect/Pods-HyperConnect-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		7B38E15523070BF200D65CFC /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"${SRCROOT}/Pods/ElastosCarrierSDK/ElastosCarrier-framework/CocoaPods/codesigncarrierframework.sh\"\n";
 		};
 		E207C295276BFA1B5CE6C656 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -685,6 +703,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = G8G4RU5HYC;
 				INFOPLIST_FILE = HyperConnect/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -703,6 +722,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = G8G4RU5HYC;
 				INFOPLIST_FILE = HyperConnect/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

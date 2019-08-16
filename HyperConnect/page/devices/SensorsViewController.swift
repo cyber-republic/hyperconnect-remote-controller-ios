@@ -12,7 +12,6 @@ class SensorsViewController: UIViewController {
     @IBOutlet weak var categoryPlaceholder: UILabel!
     @IBOutlet weak var categoriesCollectionView: UICollectionView!
     
-    
     var fromPageIndex:Int!
     let localRepository=LocalRepository.sharedInstance
     let attributeManagement=AttributeManagement.sharedInstance
@@ -22,6 +21,7 @@ class SensorsViewController: UIViewController {
     var selectedList:[Category]=[]
     var selectedSensor:Sensor!
     var sensorList:[Sensor]=[]
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -105,6 +105,8 @@ class SensorsViewController: UIViewController {
         let fetchRequest:NSFetchRequest<Sensor>=Sensor.fetchRequest()
         let sortDescriptor=NSSortDescriptor(key: "name", ascending: true)
         fetchRequest.sortDescriptors=[sortDescriptor]
+        let devicePredicate=NSPredicate(format: "device.userId==%@", device.userId!)
+        fetchRequest.predicate=devicePredicate
         sensorResultsController=NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: LocalRepository.sharedInstance.getDataController().viewContext, sectionNameKeyPath: nil, cacheName: nil)
         sensorResultsController.delegate=self
         do{
@@ -220,27 +222,15 @@ extension SensorsViewController: UICollectionViewDataSource, UICollectionViewDel
 }
 
 
-extension SensorsViewController: NSFetchedResultsControllerDelegate{
+extension SensorsViewController: NSFetchedResultsControllerDelegate {
     func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
         if sensorsCollectionView.numberOfItems(inSection: 0) == 0 {
-            sensorsCollectionView.reloadData()
+            if type == .insert {
+                sensorsCollectionView.insertItems(at: [newIndexPath!])
+            }
         }
         else {
-            switch type {
-                case .insert:
-                    sensorsCollectionView.insertItems(at: [newIndexPath!])
-                    break
-                case .update:
-                    sensorsCollectionView.reloadItems(at: [indexPath!])
-                    break
-                case .delete:
-                    sensorsCollectionView.deleteItems(at: [indexPath!])
-                    break
-                case .move:
-                    break
-                @unknown default:
-                    break
-            }
+            sensorsCollectionView.reloadData()
         }
         initPlaceholder()
         //initSensorDropDown()

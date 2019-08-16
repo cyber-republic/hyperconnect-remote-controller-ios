@@ -13,7 +13,7 @@ class DashboardViewController: UIViewController {
     @IBOutlet weak var activeEventCountLabel: UILabel!
     @IBOutlet weak var eventCountLabel: UILabel!
     
-    
+    let elastosCarrier=ElastosCarrier.sharedInstance
     let localRepository=LocalRepository.sharedInstance
     var deviceResultsController:NSFetchedResultsController<Device>!
     var onlineDeviceResultsController:NSFetchedResultsController<Device>!
@@ -24,7 +24,7 @@ class DashboardViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setCarrierConnectionState(false)
+        setCarrierConnectionState(elastosCarrier.isConnected())
         localRepository.dashboardVC=self
         
         initOnlineDeviceResultsController()

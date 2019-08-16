@@ -84,20 +84,13 @@ extension DevicesViewController: UICollectionViewDataSource, UICollectionViewDel
 
 extension DevicesViewController: NSFetchedResultsControllerDelegate {
     func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
-        switch type {
-            case .insert:
+        if devicesCollectionView.numberOfItems(inSection: 0) == 0 {
+            if type == .insert {
                 devicesCollectionView.insertItems(at: [newIndexPath!])
-                break
-            case .update:
-                devicesCollectionView.reloadItems(at: [indexPath!])
-                break
-            case .delete:
-                devicesCollectionView.deleteItems(at: [indexPath!])
-                break
-            case .move:
-                break
-            @unknown default:
-                break
+            }
+        }
+        else {
+            devicesCollectionView.reloadData()
         }
         initPlaceholder()
     }

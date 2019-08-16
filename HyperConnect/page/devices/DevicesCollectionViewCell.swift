@@ -108,7 +108,7 @@ class DevicesCollectionViewCell: UICollectionViewCell {
     
     @IBAction func onMoreButton(_ sender: UIButton) {
         let dialog=UIStoryboard(name: "Dialog", bundle: nil).instantiateViewController(withIdentifier: "popoverDeviceActions") as! PopoverDeviceActionsViewController
-        dialog.bind(button: sender, devicesVC: devicesVC, device: device)
+        dialog.bind(button: sender, cellY: self.frame.origin.y, devicesVC: devicesVC, device: device)
         devicesVC.addChild(dialog)
         devicesVC.view.addSubview(dialog.view)
     }
@@ -153,21 +153,15 @@ extension DevicesCollectionViewCell: UICollectionViewDataSource, UICollectionVie
 
 extension DevicesCollectionViewCell: NSFetchedResultsControllerDelegate {
     func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
-        switch type {
-            case .insert:
+        if categoriesCollectionView.numberOfItems(inSection: 0) == 0 {
+            if type == .insert {
                 categoriesCollectionView.insertItems(at: [newIndexPath!])
-                break
-            case .update:
-                categoriesCollectionView.reloadItems(at: [indexPath!])
-                break
-            case .delete:
-                categoriesCollectionView.deleteItems(at: [indexPath!])
-                break
-            case .move:
-                break
-            @unknown default:
-                break
+            }
+        }
+        else {
+            categoriesCollectionView.reloadData()
         }
         initPlaceholder()
     }
 }
+

@@ -59,7 +59,7 @@ class AddEventViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        initViewTap()
+        //initViewTap()
         eventValueInput.delegate=self
         triggerValueInput.delegate=self
         eventNameInput.delegate=self
@@ -75,7 +75,9 @@ class AddEventViewController: UIViewController {
     private func initViewTap() {
         let tap=UITapGestureRecognizer(target: self, action: #selector(handleTap(sender:)))
         tap.numberOfTapsRequired=1
-        self.view.addGestureRecognizer(tap)
+        eventValueInput.inputView?.addGestureRecognizer(tap)
+        triggerValueInput.inputView?.addGestureRecognizer(tap)
+        eventNameInput.inputView?.addGestureRecognizer(tap)
     }
     
     @objc func handleTap(sender: UITapGestureRecognizer) {

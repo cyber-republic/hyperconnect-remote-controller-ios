@@ -27,6 +27,7 @@ class SensorsCollectionViewCell: UICollectionViewCell {
         attributesCollectionView.delegate=self
         attributesCollectionView.dataSource=self
         attributesCollectionView.reloadData()
+        
     }
     
     fileprivate func initImageColor() {
@@ -36,33 +37,35 @@ class SensorsCollectionViewCell: UICollectionViewCell {
     }
     
     func initAttributeResultsController() {
-        let fetchRequest:NSFetchRequest<Attribute>=Attribute.fetchRequest()
-        let sortDescriptor=NSSortDescriptor(key: "name", ascending: true)
-        fetchRequest.sortDescriptors=[sortDescriptor]
-        let devicePredicate=NSPredicate(format: "device.userId==%@", device.userId!)
-        let sensorPredicate=NSPredicate(format: "sensor.edgeSensorId==%i", sensor.edgeSensorId)
-        
-        if selectedList.count == 0 {
-            let andPredicate=NSCompoundPredicate(type: NSCompoundPredicate.LogicalType.and, subpredicates: [devicePredicate, sensorPredicate])
-            fetchRequest.predicate=andPredicate
-        }
-        else {
-            var categoryPredicates:[NSPredicate]=[]
-            for category in selectedList {
-                let categoryPredicate=NSPredicate(format: "ANY categories.category.name==%@", category.name!)
-                categoryPredicates.append(categoryPredicate)
+        if device.userId != nil {
+            let fetchRequest:NSFetchRequest<Attribute>=Attribute.fetchRequest()
+            let sortDescriptor=NSSortDescriptor(key: "name", ascending: true)
+            fetchRequest.sortDescriptors=[sortDescriptor]
+            let devicePredicate=NSPredicate(format: "device.userId==%@", device.userId!)
+            let sensorPredicate=NSPredicate(format: "sensor.edgeSensorId==%i", sensor.edgeSensorId)
+            
+            if selectedList.count == 0 {
+                let andPredicate=NSCompoundPredicate(type: NSCompoundPredicate.LogicalType.and, subpredicates: [devicePredicate, sensorPredicate])
+                fetchRequest.predicate=andPredicate
             }
-            let orPredicate=NSCompoundPredicate(type: NSCompoundPredicate.LogicalType.or, subpredicates: categoryPredicates)
-            let andPredicate=NSCompoundPredicate(type: NSCompoundPredicate.LogicalType.and, subpredicates: [devicePredicate, sensorPredicate, orPredicate])
-            fetchRequest.predicate=andPredicate
+            else {
+                var categoryPredicates:[NSPredicate]=[]
+                for category in selectedList {
+                    let categoryPredicate=NSPredicate(format: "ANY categories.category.name==%@", category.name!)
+                    categoryPredicates.append(categoryPredicate)
+                }
+                let orPredicate=NSCompoundPredicate(type: NSCompoundPredicate.LogicalType.or, subpredicates: categoryPredicates)
+                let andPredicate=NSCompoundPredicate(type: NSCompoundPredicate.LogicalType.and, subpredicates: [devicePredicate, sensorPredicate, orPredicate])
+                fetchRequest.predicate=andPredicate
+            }
+            
+            attributeResultsController=NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: LocalRepository.sharedInstance.getDataController().viewContext, sectionNameKeyPath: nil, cacheName: nil)
+            attributeResultsController.delegate=self
+            do{
+                try attributeResultsController.performFetch()
+            }
+            catch{}
         }
-        
-        attributeResultsController=NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: LocalRepository.sharedInstance.getDataController().viewContext, sectionNameKeyPath: nil, cacheName: nil)
-        attributeResultsController.delegate=self
-        do{
-            try attributeResultsController.performFetch()
-        }
-        catch{}
     }
     
 }
@@ -101,24 +104,12 @@ extension SensorsCollectionViewCell: UICollectionViewDataSource, UICollectionVie
 extension SensorsCollectionViewCell: NSFetchedResultsControllerDelegate{
     func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
         if attributesCollectionView.numberOfItems(inSection: 0) == 0 {
-            attributesCollectionView.reloadData()
+            if type == .insert {
+                attributesCollectionView.insertItems(at: [newIndexPath!])
+            }
         }
         else {
-            switch type {
-                case .insert:
-                    attributesCollectionView.insertItems(at: [newIndexPath!])
-                    break
-                case .update:
-                    attributesCollectionView.reloadItems(at: [indexPath!])
-                    break
-                case .delete:
-                    attributesCollectionView.deleteItems(at: [indexPath!])
-                    break
-                case .move:
-                    break
-                @unknown default:
-                    break
-            }
+            attributesCollectionView.reloadData()
         }
     }
 }

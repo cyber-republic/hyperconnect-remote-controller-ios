@@ -48,10 +48,18 @@ class EventsCollectionViewCell: UICollectionViewCell {
         setActionDevice()
         setActionAttribute()
         
-        sourceDeviceLabel.text=sourceDevice.name
-        sourceAttributeLabel.text=sourceAttribute.name
-        actionDeviceLabel.text=actionDevice.name
-        actionAttributeLabel.text=actionAttribute.name
+        if sourceDevice != nil {
+            sourceDeviceLabel.text=sourceDevice.name
+        }
+        if sourceAttribute != nil {
+            sourceAttributeLabel.text=sourceAttribute.name
+        }
+        if actionDevice != nil {
+            actionDeviceLabel.text=actionDevice.name
+        }
+        if actionAttribute != nil {
+            actionAttributeLabel.text=actionAttribute.name
+        }
         
         if event.state == EventState.ACTIVE.value {
             stateLabel.text="Active"
@@ -136,42 +144,66 @@ class EventsCollectionViewCell: UICollectionViewCell {
     }
     
     func setSourceDevice() {
-        sourceDevice=sourceDeviceResultsController.fetchedObjects![0]
-        if sourceDevice.connectionState == DeviceConnectionState.ONLINE.value {
-            sourceDeviceImage.tintColor=UIColor.init(named: "colorGreen")
+        let count=sourceDeviceResultsController.fetchedObjects!.count
+        if count == 0 {
+            sourceDevice=nil
         }
-        else if sourceDevice.connectionState == DeviceConnectionState.OFFLINE.value {
-            sourceDeviceImage.tintColor=UIColor.init(named: "colorRed")
+        else {
+            sourceDevice=sourceDeviceResultsController.fetchedObjects![0]
+            if sourceDevice.connectionState == DeviceConnectionState.ONLINE.value {
+                sourceDeviceImage.tintColor=UIColor.init(named: "colorGreen")
+            }
+            else if sourceDevice.connectionState == DeviceConnectionState.OFFLINE.value {
+                sourceDeviceImage.tintColor=UIColor.init(named: "colorRed")
+            }
         }
     }
     
     func setSourceAttribute() {
-        sourceAttribute=sourceAttributeResultsController.fetchedObjects![0]
-        if sourceAttribute.state == AttributeState.ACTIVE.value {
-            sourceAttributeImage.tintColor=UIColor.init(named: "colorGreen")
+        let count=sourceAttributeResultsController.fetchedObjects!.count
+        if count == 0 {
+            sourceAttribute=nil
         }
-        else if sourceAttribute.state == AttributeState.DEACTIVATED.value {
-            sourceAttributeImage.tintColor=UIColor.init(named: "colorRed")
+        else {
+            sourceAttribute=sourceAttributeResultsController.fetchedObjects![0]
+            if sourceAttribute.state == AttributeState.ACTIVE.value {
+                sourceAttributeImage.tintColor=UIColor.init(named: "colorGreen")
+            }
+            else if sourceAttribute.state == AttributeState.DEACTIVATED.value {
+                sourceAttributeImage.tintColor=UIColor.init(named: "colorRed")
+            }
         }
     }
     
     func setActionDevice() {
-        actionDevice=actionDeviceResultsController.fetchedObjects![0]
-        if actionDevice.connectionState == DeviceConnectionState.ONLINE.value {
-            actionDeviceImage.tintColor=UIColor.init(named: "colorGreen")
+        let count=actionDeviceResultsController.fetchedObjects!.count
+        if count == 0 {
+            actionDevice=nil
         }
-        else if actionDevice.connectionState == DeviceConnectionState.OFFLINE.value {
-            actionDeviceImage.tintColor=UIColor.init(named: "colorRed")
+        else {
+            actionDevice=actionDeviceResultsController.fetchedObjects![0]
+            if actionDevice.connectionState == DeviceConnectionState.ONLINE.value {
+                actionDeviceImage.tintColor=UIColor.init(named: "colorGreen")
+            }
+            else if actionDevice.connectionState == DeviceConnectionState.OFFLINE.value {
+                actionDeviceImage.tintColor=UIColor.init(named: "colorRed")
+            }
         }
     }
     
     func setActionAttribute() {
-        actionAttribute=actionAttributeResultsController.fetchedObjects![0]
-        if actionAttribute.state == AttributeState.ACTIVE.value {
-            actionAttributeImage.tintColor=UIColor.init(named: "colorGreen")
+        let count=actionAttributeResultsController.fetchedObjects!.count
+        if count == 0 {
+            actionAttribute=nil
         }
-        else if actionAttribute.state == AttributeState.DEACTIVATED.value {
-            actionAttributeImage.tintColor=UIColor.init(named: "colorRed")
+        else {
+            actionAttribute=actionAttributeResultsController.fetchedObjects![0]
+            if actionAttribute.state == AttributeState.ACTIVE.value {
+                actionAttributeImage.tintColor=UIColor.init(named: "colorGreen")
+            }
+            else if actionAttribute.state == AttributeState.DEACTIVATED.value {
+                actionAttributeImage.tintColor=UIColor.init(named: "colorRed")
+            }
         }
     }
     

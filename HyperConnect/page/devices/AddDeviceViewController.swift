@@ -12,15 +12,15 @@ class AddDeviceViewController: UIViewController {
     var fromPageIndex:Int!
     let elastosCarrier=ElastosCarrier.sharedInstance
     let localRepository=LocalRepository.sharedInstance
-    /*var captureSession:AVCaptureSession!
-    var previewLayer:AVCaptureVideoPreviewLayer!*/
+    var captureSession:AVCaptureSession!
+    var previewLayer:AVCaptureVideoPreviewLayer!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         initViewTap()
         deviceNameInput.delegate=self
         deviceAddressInput.delegate=self
-        //initCamera()
+        initCamera()
     }
     
     private func initViewTap() {
@@ -33,7 +33,7 @@ class AddDeviceViewController: UIViewController {
         hideKeyboard()
     }
     
-    /*private func initCamera() {
+    private func initCamera() {
         captureSession=AVCaptureSession()
         guard let videoCaptureDevice=AVCaptureDevice.default(for: .video) else { return }
         let videoInput:AVCaptureDeviceInput
@@ -66,7 +66,7 @@ class AddDeviceViewController: UIViewController {
         previewLayer.videoGravity = .resizeAspectFill
         qrView.layer.addSublayer(previewLayer)
         
-        //captureSession.startRunning()
+        captureSession.startRunning()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -85,7 +85,7 @@ class AddDeviceViewController: UIViewController {
     
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
         return .portrait
-    }*/
+    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "actionHome" {
@@ -113,7 +113,7 @@ class AddDeviceViewController: UIViewController {
                     
                     let addCheck=elastosCarrier.addFriend(device: newDevice)
                     if addCheck {
-                        //closeCamera()
+                        closeCamera()
                         performSegue(withIdentifier: "actionHome", sender: nil)
                     }
                     else {
@@ -143,7 +143,7 @@ class AddDeviceViewController: UIViewController {
 }
 
 
-/*extension AddDeviceViewController: AVCaptureMetadataOutputObjectsDelegate {
+extension AddDeviceViewController: AVCaptureMetadataOutputObjectsDelegate {
     func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
         if let metadataObject=metadataObjects.first {
             guard let readableObject=metadataObject as? AVMetadataMachineReadableCodeObject else { return }
@@ -156,7 +156,7 @@ class AddDeviceViewController: UIViewController {
         captureSession.stopRunning()
         AudioServicesPlaySystemSound(SystemSoundID(kSystemSoundID_Vibrate))
     }
-}*/
+}
 
 
 extension AddDeviceViewController: UITextFieldDelegate {

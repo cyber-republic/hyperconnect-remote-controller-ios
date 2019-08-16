@@ -65,17 +65,17 @@
         <attribute name="edgeSensorId" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="attributes" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Attribute" inverseName="sensor" inverseEntity="Attribute" syncable="YES"/>
+        <relationship name="attributes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Attribute" inverseName="sensor" inverseEntity="Attribute" syncable="YES"/>
         <relationship name="device" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Device" inverseName="sensors" inverseEntity="Device" syncable="YES"/>
     </entity>
     <elements>
         <element name="Attribute" positionX="-36" positionY="45" width="128" height="210"/>
         <element name="Category" positionX="-54" positionY="135" width="128" height="60"/>
         <element name="CategoryRecord" positionX="-45" positionY="144" width="128" height="90"/>
+        <element name="DataRecord" positionX="-45" positionY="135" width="128" height="105"/>
         <element name="Device" positionX="-63" positionY="-18" width="128" height="150"/>
         <element name="Event" positionX="-54" positionY="90" width="128" height="255"/>
         <element name="Notification" positionX="-45" positionY="144" width="128" height="150"/>
         <element name="Sensor" positionX="-54" positionY="27" width="128" height="120"/>
-        <element name="DataRecord" positionX="-45" positionY="135" width="128" height="105"/>
     </elements>
 </model>

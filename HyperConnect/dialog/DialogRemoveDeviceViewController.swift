@@ -38,8 +38,9 @@ class DialogRemoveDeviceViewController: UIViewController {
     @IBAction func onConfirmButton(_ sender: UIButton) {
         closeDialog()
         
-        /*let elastosCarrier=ElastosCarrier.sharedInstance
+        let elastosCarrier=ElastosCarrier.sharedInstance
         let localRepository=LocalRepository.sharedInstance
+        
         let jsonObject:JSON=[
             "command": "removeMe"
         ]
@@ -52,12 +53,9 @@ class DialogRemoveDeviceViewController: UIViewController {
             MDCSnackbarManager.show(MDCSnackbarMessage(text: "Device has been removed."))
         }
         else {
-            localRepository.deleteDevice(device: device)
-            localRepository.updateDatabase()
             MDCSnackbarManager.show(MDCSnackbarMessage(text: "Sorry, something went wrong."))
-        }*/
+        }
         
-        MDCSnackbarManager.show(MDCSnackbarMessage(text: "Device cannot be deleted."))
     }
     
     

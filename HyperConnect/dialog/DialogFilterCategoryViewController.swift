@@ -103,20 +103,13 @@ extension DialogFilterCategoryViewController: UICollectionViewDataSource, UIColl
 
 extension DialogFilterCategoryViewController: NSFetchedResultsControllerDelegate {
     func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
-        switch type {
-        case .insert:
-            categoriesCollectionView.insertItems(at: [newIndexPath!])
-            break
-        case .delete:
-            categoriesCollectionView.deleteItems(at: [indexPath!])
-            break
-        case .update:
-            categoriesCollectionView.reloadItems(at: [indexPath!])
-            break
-        case .move:
-            break
-        @unknown default:
-            break
+        if categoriesCollectionView.numberOfItems(inSection: 0) == 0 {
+            if type == .insert {
+                categoriesCollectionView.insertItems(at: [newIndexPath!])
+            }
+        }
+        else {
+            categoriesCollectionView.reloadData()
         }
         initPlaceholder()
     }

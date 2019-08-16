@@ -70,20 +70,13 @@ extension EventsViewController: UICollectionViewDataSource, UICollectionViewDele
 
 extension EventsViewController: NSFetchedResultsControllerDelegate {
     func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
-        switch type {
-            case .insert:
+        if eventsCollectionView.numberOfItems(inSection: 0) == 0 {
+            if type == .insert {
                 eventsCollectionView.insertItems(at: [newIndexPath!])
-                break
-            case .update:
-                eventsCollectionView.reloadItems(at: [indexPath!])
-                break
-            case .delete:
-                eventsCollectionView.deleteItems(at: [indexPath!])
-                break
-            case .move:
-                break
-            @unknown default:
-                break
+            }
+        }
+        else {
+            eventsCollectionView.reloadData()
         }
         initPlaceholder()
     }

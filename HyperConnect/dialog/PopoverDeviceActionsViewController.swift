@@ -7,6 +7,7 @@ class PopoverDeviceActionsViewController: UIViewController {
     @IBOutlet weak var arrowImage: UIImageView!
     
     var button:UIButton!
+    var cellY:CGFloat!
     var devicesVC:DevicesViewController!
     var device:Device!
     
@@ -17,15 +18,16 @@ class PopoverDeviceActionsViewController: UIViewController {
         initViewTap()
     }
     
-    func bind(button: UIButton, devicesVC: DevicesViewController, device: Device) {
+    func bind(button: UIButton, cellY: CGFloat, devicesVC: DevicesViewController, device: Device) {
         self.button=button
         self.devicesVC=devicesVC
         self.device=device
+        self.cellY=cellY
     }
     
     private func initPopoverPosition() {
         let x=button.frame.origin.x-25
-        let y=button.frame.origin.y+popoverView.frame.height-button.frame.height+12
+        let y=cellY+popoverView.frame.height-button.frame.height+button.frame.origin.y+12
         let width=popoverView.frame.width-button.frame.width
         let height=popoverView.frame.height
         popoverView.frame=CGRect(x: x, y: y, width: width, height: height)

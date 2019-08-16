@@ -34,7 +34,8 @@ class ElastosCarrier : NSObject {
     // MARK: - Private variables
     
     override init() {
-        Carrier.setLogLevel(.Debug)
+        //Carrier.setLogLevel(.Debug)
+        Carrier.setLogLevel(.None)
     }
     
     public func setHistoryVC(historyVC: HistoryViewController){
@@ -52,16 +53,16 @@ class ElastosCarrier : NSObject {
     
     public func start() {
         do {
-            print("Start")
+            //print("Start")
             
             if networkManager == nil {
                 let url = URL(string: ElastosCarrier.checkURL)
                 networkManager = NetworkReachabilityManager(host: url!.host!)
-                print("Network reachable")
+                //print("Network reachable")
             }
             
             guard networkManager!.isReachable else {
-                print("network is not reachable")
+                //print("network is not reachable")
                 networkManager?.listener = { [weak self] newStatus in
                     if newStatus == .reachable(.ethernetOrWiFi) || newStatus == .reachable(.wwan) {
                         self?.start()
@@ -72,7 +73,7 @@ class ElastosCarrier : NSObject {
             }
             
             if networkManager!.isReachable{
-                print("Network is reachable")
+                //print("Network is reachable")
             }
             
             let carrierDirectory: String = NSSearchPathForDirectoriesInDomains(.libraryDirectory, .userDomainMask, true)[0] + "/carrier"
@@ -121,13 +122,13 @@ class ElastosCarrier : NSObject {
             options.persistentLocation = carrierDirectory
             
             try Carrier.initializeSharedInstance(options: options, delegate: self)
-            print("carrier instance created")
+            //print("carrier instance created")
             
             
             sharedInstance = Carrier.sharedInstance()
             
             try! sharedInstance.start(iterateInterval: 1000)
-            print("carrier started, waiting for ready")
+            //print("carrier started, waiting for ready")
             
             
         }
@@ -158,8 +159,8 @@ class ElastosCarrier : NSObject {
         var response:Bool=true
         do{
             localRepository.setTempDeviceAddress(deviceAddress: device.address!)
-            try sharedInstance.addFriend(with: device.address!, withGreeting: CONTROLLER_CONNECTION_KEYWORD)
             localRepository.updateDatabase()
+            try sharedInstance.addFriend(with: device.address!, withGreeting: CONTROLLER_CONNECTION_KEYWORD)
         }
         catch is CarrierError{
             response=false
@@ -207,11 +208,11 @@ class ElastosCarrier : NSObject {
 extension ElastosCarrier : CarrierDelegate {
     
     func didBecomeReady(_ carrier: Carrier) {
-        print("MainDelegate - didBecomeReady")
+        //print("MainDelegate - didBecomeReady")
     }
     
     func connectionStatusDidChange(_ carrier: Carrier, _ newStatus: CarrierConnectionStatus) {
-        print("MainDelegate - connectionStatusDidChange - "+newStatus.description)
+        //print("MainDelegate - connectionStatusDidChange - "+newStatus.description)
         if newStatus == CarrierConnectionStatus.Connected {
             connected=true
             localRepository.setCarrierConnectionState(connectionState: true)
@@ -223,11 +224,11 @@ extension ElastosCarrier : CarrierDelegate {
     }
     
     func didReceiveFriendsList(_ carrier: Carrier, _ friends: [CarrierFriendInfo]) {
-        print("MainDelegate - didReceiveFriendsList - "+friends.description)
+        //print("MainDelegate - didReceiveFriendsList - "+friends.description)
     }
     
     func friendConnectionDidChange(_ carrier: Carrier, _ friendId: String, _ newStatus: CarrierConnectionStatus) {
-        print("MainDelegate - friendConnectionDidChange - "+friendId+" - "+newStatus.description)
+        //print("MainDelegate - friendConnectionDidChange - "+friendId+" - "+newStatus.description)
         let device=localRepository.getDeviceByUserId(userId: friendId)
         if device != nil {
             if newStatus == CarrierConnectionStatus.Connected {
@@ -262,22 +263,22 @@ extension ElastosCarrier : CarrierDelegate {
     }
     
     func newFriendAdded(_ carrier: Carrier, _ newFriend: CarrierFriendInfo) {
-        print("MainDelegate - newFriendAdded - "+newFriend.description)
+        //print("MainDelegate - newFriendAdded - "+newFriend.description)
         let device=localRepository.getDeviceByUserId(userId: newFriend.userId!)
         if device == nil {
             let newDevice=localRepository.getDeviceByAddress(address: localRepository.getTempDeviceAddress())
-            newDevice?.userId=newFriend.userId
+            newDevice!.userId=newFriend.userId
             localRepository.updateDatabase()
         }
     }
     
     func friendRemoved(_ carrier: Carrier, _ friendId: String) {
-        print("MainDelegate - friendRemoved - "+friendId)
+        //print("MainDelegate - friendRemoved - "+friendId)
     }
     
     func didReceiveFriendMessage(_ carrier: Carrier, _ from: String, _ data: Data) {
         let messageText=String(data: data, encoding: .utf8)!
-        print("MainDelegate - didReceiveFriendMessage - "+from+" - "+messageText)
+        //print("MainDelegate - didReceiveFriendMessage - "+from+" - "+messageText)
         
         let device:Device=localRepository.getDeviceByUserId(userId: from)!
         do {
@@ -432,6 +433,7 @@ extension ElastosCarrier : CarrierDelegate {
                     }
                     else {
                         attribute!.state=AttributeState.DEACTIVATED.value
+                        AttributeManagement.sharedInstance.stopAttribute(attribute: attribute!)
                     }
                     localRepository.updateDatabase()
                 }

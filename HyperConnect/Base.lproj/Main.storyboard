@@ -127,7 +127,7 @@
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Disconnected" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IJ2-aN-J2a">
                                                                 <rect key="frame" x="29" y="0.0" width="100.5" height="24"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                                <color key="textColor" name="colorRed"/>
+                                                                <color key="textColor" name="colorGreen"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                         </subviews>
@@ -398,13 +398,13 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="368" height="454"/>
                                                     <subviews>
                                                         <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="hag-uP-m2O">
-                                                            <rect key="frame" x="125" y="10" width="118" height="29"/>
+                                                            <rect key="frame" x="125.5" y="10" width="117.5" height="29"/>
                                                             <subviews>
                                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="imageDeveloperBoard" translatesAutoresizingMaskIntoConstraints="NO" id="HT5-6i-Cx5">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="24" height="29"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="16" height="29"/>
                                                                 </imageView>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sensor 1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hCl-WO-HJa">
-                                                                    <rect key="frame" x="29" y="0.0" width="89" height="29"/>
+                                                                    <rect key="frame" x="21" y="0.0" width="96.5" height="29"/>
                                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
                                                                     <color key="textColor" name="colorMetal"/>
                                                                     <nil key="highlightedColor"/>
@@ -477,14 +477,14 @@
                                                                                         <nil key="highlightedColor"/>
                                                                                     </label>
                                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u3b-Sd-PdZ">
-                                                                                        <rect key="frame" x="276" y="171.5" width="24" height="24"/>
+                                                                                        <rect key="frame" x="284" y="171.5" width="16" height="22"/>
                                                                                         <state key="normal" image="imageCategory"/>
                                                                                         <connections>
                                                                                             <action selector="onAddCategoryButton:" destination="wxM-cq-nW4" eventType="touchUpInside" id="PIi-T3-yq6"/>
                                                                                         </connections>
                                                                                     </button>
                                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fgZ-b2-IRu">
-                                                                                        <rect key="frame" x="10" y="205.5" width="81" height="30"/>
+                                                                                        <rect key="frame" x="10" y="205.5" width="73" height="23"/>
                                                                                         <color key="backgroundColor" name="colorMetal"/>
                                                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                                         <inset key="contentEdgeInsets" minX="6" minY="3" maxX="6" maxY="3"/>
@@ -494,7 +494,7 @@
                                                                                         </connections>
                                                                                     </button>
                                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9lv-Qn-JNR">
-                                                                                        <rect key="frame" x="96" y="205.5" width="83" height="30"/>
+                                                                                        <rect key="frame" x="88" y="205.5" width="75" height="23"/>
                                                                                         <color key="backgroundColor" name="colorMetal"/>
                                                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                                         <inset key="contentEdgeInsets" minX="6" minY="3" maxX="6" maxY="3"/>
@@ -504,13 +504,13 @@
                                                                                         </connections>
                                                                                     </button>
                                                                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sY1-Nn-AY2">
-                                                                                        <rect key="frame" x="251" y="205.5" width="51" height="31"/>
+                                                                                        <rect key="frame" x="251" y="203.5" width="51" height="31"/>
                                                                                         <connections>
                                                                                             <action selector="onStateSwitch:" destination="wxM-cq-nW4" eventType="valueChanged" id="8ds-L6-ZPd"/>
                                                                                         </connections>
                                                                                     </switch>
                                                                                     <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PwM-PV-dTO">
-                                                                                        <rect key="frame" x="10" y="171.5" width="256" height="24"/>
+                                                                                        <rect key="frame" x="10" y="171.5" width="264" height="24"/>
                                                                                         <subviews>
                                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Categories" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3ew-Xw-gY4">
                                                                                                 <rect key="frame" x="0.0" y="2.5" width="110.5" height="19.5"/>
@@ -528,7 +528,7 @@
                                                                                         </constraints>
                                                                                     </view>
                                                                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="lBB-tB-0G9">
-                                                                                        <rect key="frame" x="10" y="171.5" width="256" height="24"/>
+                                                                                        <rect key="frame" x="10" y="171.5" width="264" height="24"/>
                                                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                         <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="10" id="HQr-ia-yfE">
                                                                                             <size key="itemSize" width="80" height="24"/>
@@ -678,14 +678,14 @@
                                                                                         <nil key="highlightedColor"/>
                                                                                     </label>
                                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kUB-ey-gkT">
-                                                                                        <rect key="frame" x="276" y="120" width="24" height="24"/>
+                                                                                        <rect key="frame" x="284" y="113" width="16" height="22"/>
                                                                                         <state key="normal" image="imageCategory"/>
                                                                                         <connections>
                                                                                             <action selector="onAddCategoryButton:" destination="nWb-j4-8hN" eventType="touchUpInside" id="NKU-IY-8Wl"/>
                                                                                         </connections>
                                                                                     </button>
                                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4qh-7S-go4">
-                                                                                        <rect key="frame" x="10" y="154" width="81" height="30"/>
+                                                                                        <rect key="frame" x="10" y="154" width="73" height="23"/>
                                                                                         <color key="backgroundColor" name="colorMetal"/>
                                                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                                         <inset key="contentEdgeInsets" minX="6" minY="3" maxX="6" maxY="3"/>
@@ -695,7 +695,7 @@
                                                                                         </connections>
                                                                                     </button>
                                                                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LU8-tn-UfA">
-                                                                                        <rect key="frame" x="251" y="154" width="51" height="31"/>
+                                                                                        <rect key="frame" x="251" y="145" width="51" height="31"/>
                                                                                         <connections>
                                                                                             <action selector="onStateSwitch:" destination="nWb-j4-8hN" eventType="valueChanged" id="3I8-aO-UY9"/>
                                                                                         </connections>
@@ -710,7 +710,7 @@
                                                                                         <textInputTraits key="textInputTraits"/>
                                                                                     </textField>
                                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dDh-6K-mZy">
-                                                                                        <rect key="frame" x="215" y="80" width="70" height="30"/>
+                                                                                        <rect key="frame" x="215" y="80" width="62" height="23"/>
                                                                                         <color key="backgroundColor" name="colorMetal"/>
                                                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                                         <inset key="contentEdgeInsets" minX="6" minY="3" maxX="6" maxY="3"/>
@@ -720,7 +720,7 @@
                                                                                         </connections>
                                                                                     </button>
                                                                                     <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aqK-3q-8gj">
-                                                                                        <rect key="frame" x="10" y="120" width="256" height="24"/>
+                                                                                        <rect key="frame" x="10" y="120" width="264" height="24"/>
                                                                                         <subviews>
                                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Categories" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="47h-h6-KFL">
                                                                                                 <rect key="frame" x="0.0" y="2.5" width="110.5" height="19.5"/>
@@ -738,7 +738,7 @@
                                                                                         </constraints>
                                                                                     </view>
                                                                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="359-jq-YGF">
-                                                                                        <rect key="frame" x="10" y="120" width="256" height="24"/>
+                                                                                        <rect key="frame" x="10" y="120" width="264" height="24"/>
                                                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                         <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="10" id="qCF-aC-eQk">
                                                                                             <size key="itemSize" width="80" height="24"/>
@@ -882,17 +882,17 @@
                                                             </cells>
                                                         </collectionView>
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="RjU-Re-gFM">
-                                                            <rect key="frame" x="20" y="20" width="95" height="9"/>
+                                                            <rect key="frame" x="20" y="20" width="95.5" height="9"/>
                                                             <subviews>
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7bf-kc-n23">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="95" height="2"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="95.5" height="2"/>
                                                                     <color key="backgroundColor" name="colorGray"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="2" id="0JX-uK-pKd"/>
                                                                     </constraints>
                                                                 </view>
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vd3-dh-8Gq">
-                                                                    <rect key="frame" x="0.0" y="7" width="95" height="2"/>
+                                                                    <rect key="frame" x="0.0" y="7" width="95.5" height="2"/>
                                                                     <color key="backgroundColor" name="colorGray"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="2" id="vJn-h0-FU1"/>
@@ -1093,7 +1093,7 @@
                                 <rect key="frame" x="0.0" y="20" width="375" height="56"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y7H-Xt-cT8">
-                                        <rect key="frame" x="10" y="16" width="70" height="24"/>
+                                        <rect key="frame" x="10" y="17.5" width="62" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <state key="normal" title="Home" image="imageArrowBackIos"/>
                                         <connections>
@@ -1164,7 +1164,7 @@
                                                         <textInputTraits key="textInputTraits"/>
                                                     </textField>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="km2-8x-VLI">
-                                                        <rect key="frame" x="251" y="414" width="74" height="30"/>
+                                                        <rect key="frame" x="259" y="414" width="66" height="23"/>
                                                         <color key="backgroundColor" name="colorMetal"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <inset key="contentEdgeInsets" minX="6" minY="3" maxX="6" maxY="3"/>
@@ -1402,75 +1402,6 @@
                                                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="tiN-gC-6wW" secondAttribute="trailing" constant="20" symbolic="YES" id="xWs-Re-dUd"/>
                                                 </constraints>
                                             </view>
-                                            <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Trigger Value (required)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jVW-EJ-pcx">
-                                                <rect key="frame" x="143" y="518" width="212" height="30"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="180" id="Lmg-Pe-nuf"/>
-                                                </constraints>
-                                                <nil key="textColor"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
-                                            </textField>
-                                            <textField hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QMP-NR-kD1" customClass="DropDown" customModule="iOSDropDown">
-                                                <rect key="frame" x="143" y="518" width="180" height="30"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="180" id="xHc-Ry-J7m"/>
-                                                </constraints>
-                                                <nil key="textColor"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSearchEnable" value="NO"/>
-                                                    <userDefinedRuntimeAttribute type="color" keyPath="selectedRowColor">
-                                                        <color key="value" name="colorGrayD"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                            </textField>
-                                            <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="45P-xd-msx" customClass="DropDown" customModule="iOSDropDown">
-                                                <rect key="frame" x="136" y="479" width="180" height="30"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="180" id="E0e-7B-vOw"/>
-                                                </constraints>
-                                                <nil key="textColor"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSearchEnable" value="NO"/>
-                                                    <userDefinedRuntimeAttribute type="color" keyPath="selectedRowColor">
-                                                        <color key="value" name="colorGrayD"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                            </textField>
-                                            <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dAO-Wa-8YB" customClass="DropDown" customModule="iOSDropDown">
-                                                <rect key="frame" x="121" y="439" width="180" height="30"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="180" id="Q9G-fw-49p"/>
-                                                </constraints>
-                                                <nil key="textColor"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="color" keyPath="selectedRowColor">
-                                                        <color key="value" name="colorGrayD"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSearchEnable" value="NO"/>
-                                                </userDefinedRuntimeAttributes>
-                                            </textField>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="h5X-F3-h6w" customClass="DropDown" customModule="iOSDropDown">
-                                                <rect key="frame" x="119" y="399" width="180" height="30"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="180" id="bt5-1g-b7N"/>
-                                                </constraints>
-                                                <nil key="textColor"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="color" keyPath="selectedRowColor">
-                                                        <color key="value" name="colorGrayD"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSearchEnable" value="NO"/>
-                                                </userDefinedRuntimeAttributes>
-                                            </textField>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vg9-TR-vhK" customClass="CardBackgroundView" customModule="HyperConnect" customModuleProvider="target">
                                                 <rect key="frame" x="20" y="20" width="335" height="304"/>
                                                 <subviews>
@@ -1559,6 +1490,75 @@
                                                     <constraint firstItem="w3C-iP-2gH" firstAttribute="top" secondItem="GYS-aB-21Y" secondAttribute="bottom" constant="16" id="zkk-5B-0Cc"/>
                                                 </constraints>
                                             </view>
+                                            <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Trigger Value (required)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jVW-EJ-pcx">
+                                                <rect key="frame" x="143" y="518" width="212" height="30"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="180" id="Lmg-Pe-nuf"/>
+                                                </constraints>
+                                                <nil key="textColor"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                            <textField hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QMP-NR-kD1" customClass="DropDown" customModule="iOSDropDown">
+                                                <rect key="frame" x="143" y="518" width="180" height="30"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="180" id="xHc-Ry-J7m"/>
+                                                </constraints>
+                                                <nil key="textColor"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSearchEnable" value="NO"/>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="selectedRowColor">
+                                                        <color key="value" name="colorGrayD"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </textField>
+                                            <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="45P-xd-msx" customClass="DropDown" customModule="iOSDropDown">
+                                                <rect key="frame" x="136" y="479" width="180" height="30"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="180" id="E0e-7B-vOw"/>
+                                                </constraints>
+                                                <nil key="textColor"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSearchEnable" value="NO"/>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="selectedRowColor">
+                                                        <color key="value" name="colorGrayD"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </textField>
+                                            <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dAO-Wa-8YB" customClass="DropDown" customModule="iOSDropDown">
+                                                <rect key="frame" x="121" y="439" width="180" height="30"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="180" id="Q9G-fw-49p"/>
+                                                </constraints>
+                                                <nil key="textColor"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="selectedRowColor">
+                                                        <color key="value" name="colorGrayD"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSearchEnable" value="NO"/>
+                                                </userDefinedRuntimeAttributes>
+                                            </textField>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="h5X-F3-h6w" customClass="DropDown" customModule="iOSDropDown">
+                                                <rect key="frame" x="119" y="399" width="180" height="30"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="180" id="bt5-1g-b7N"/>
+                                                </constraints>
+                                                <nil key="textColor"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="selectedRowColor">
+                                                        <color key="value" name="colorGrayD"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSearchEnable" value="NO"/>
+                                                </userDefinedRuntimeAttributes>
+                                            </textField>
                                             <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Value (required)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="I1o-Cw-wlC">
                                                 <rect key="frame" x="131" y="274" width="180" height="30"/>
                                                 <constraints>
@@ -1760,7 +1760,7 @@
                                 <rect key="frame" x="0.0" y="20" width="375" height="56"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NIF-nb-PNc">
-                                        <rect key="frame" x="10" y="16" width="62" height="24"/>
+                                        <rect key="frame" x="10" y="17.5" width="54" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <state key="normal" title="Back" image="imageArrowBackIos"/>
                                         <connections>
@@ -1841,7 +1841,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xn0-Ef-4ts" customClass="MDCFloatingButton">
-                                <rect key="frame" x="346" y="633" width="24" height="24"/>
+                                <rect key="frame" x="354" y="635" width="16" height="22"/>
                                 <color key="backgroundColor" name="colorPrimary"/>
                                 <state key="normal" image="imageAdd"/>
                                 <connections>
@@ -1849,7 +1849,7 @@
                                 </connections>
                             </button>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="eht-Z1-Zf1" userLabel="Devices Collection View">
-                                <rect key="frame" x="0.0" y="30" width="375" height="593"/>
+                                <rect key="frame" x="0.0" y="30" width="375" height="595"/>
                                 <color key="backgroundColor" name="colorFlash"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="Zpk-9L-jmB">
                                     <size key="itemSize" width="374" height="174"/>
@@ -1958,7 +1958,7 @@
                                                             </cells>
                                                         </collectionView>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6kg-9A-bI7">
-                                                            <rect key="frame" x="10" y="114" width="86" height="30"/>
+                                                            <rect key="frame" x="10" y="114" width="78" height="23"/>
                                                             <color key="backgroundColor" name="colorMetal"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <inset key="contentEdgeInsets" minX="6" minY="3" maxX="3" maxY="3"/>
@@ -1968,7 +1968,7 @@
                                                             </connections>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lqw-Fu-EH8">
-                                                            <rect key="frame" x="101" y="114" width="118" height="30"/>
+                                                            <rect key="frame" x="93" y="114" width="110" height="23"/>
                                                             <color key="backgroundColor" name="colorMetal"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <inset key="contentEdgeInsets" minX="6" minY="3" maxX="6" maxY="3"/>
@@ -1977,7 +1977,7 @@
                                                                 <action selector="onNotificationsButton:" destination="DmZ-Hv-5rM" eventType="touchUpInside" id="4t4-Az-1jx"/>
                                                             </connections>
                                                         </button>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b5y-0D-UoL">
+                                                        <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b5y-0D-UoL">
                                                             <rect key="frame" x="288" y="107" width="36" height="36"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="36" id="XUa-cZ-1fQ"/>
@@ -2088,7 +2088,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o0w-JB-kQv" customClass="MDCFloatingButton">
-                                <rect key="frame" x="346" y="633" width="24" height="24"/>
+                                <rect key="frame" x="354" y="635" width="16" height="22"/>
                                 <color key="backgroundColor" name="colorPrimary"/>
                                 <state key="normal" image="imageAdd"/>
                                 <connections>
@@ -2096,7 +2096,7 @@
                                 </connections>
                             </button>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="NvL-db-f5a">
-                                <rect key="frame" x="0.0" y="30" width="375" height="593"/>
+                                <rect key="frame" x="0.0" y="30" width="375" height="595"/>
                                 <color key="backgroundColor" name="colorFlash"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="rgs-YZ-ocJ">
                                     <size key="itemSize" width="375" height="245"/>
@@ -2264,7 +2264,7 @@
                                                             </constraints>
                                                         </stackView>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0IK-0T-KNt">
-                                                            <rect key="frame" x="10" y="185" width="81" height="30"/>
+                                                            <rect key="frame" x="10" y="185" width="73" height="23"/>
                                                             <color key="backgroundColor" name="colorMetal"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <inset key="contentEdgeInsets" minX="6" minY="3" maxX="6" maxY="3"/>
@@ -2381,7 +2381,7 @@
                                 <rect key="frame" x="0.0" y="20" width="375" height="56"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EYd-Vm-n4u">
-                                        <rect key="frame" x="10" y="16" width="70" height="24"/>
+                                        <rect key="frame" x="10" y="17.5" width="62" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <state key="normal" title="Home" image="imageArrowBackIos"/>
                                         <connections>
@@ -2445,13 +2445,13 @@
                                                     <rect key="frame" x="20" y="5" width="313" height="67"/>
                                                     <subviews>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="imageDone" translatesAutoresizingMaskIntoConstraints="NO" id="isp-1R-IGy">
-                                                            <rect key="frame" x="10" y="10" width="24" height="24"/>
+                                                            <rect key="frame" x="10" y="10" width="16" height="16"/>
                                                         </imageView>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="imageRouter" translatesAutoresizingMaskIntoConstraints="NO" id="rkk-7x-Sve">
-                                                            <rect key="frame" x="46" y="10" width="24" height="24"/>
+                                                            <rect key="frame" x="38" y="10" width="16" height="16"/>
                                                         </imageView>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lty-pD-IZl">
-                                                            <rect key="frame" x="39" y="10" width="2" height="23"/>
+                                                            <rect key="frame" x="31" y="10" width="2" height="23"/>
                                                             <color key="backgroundColor" name="colorGray"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="23" id="A7X-RQ-BhC"/>
@@ -2459,7 +2459,7 @@
                                                             </constraints>
                                                         </view>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sensor has been added." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zyc-0P-Kmw">
-                                                            <rect key="frame" x="80" y="10" width="176" height="19.5"/>
+                                                            <rect key="frame" x="64" y="10" width="176" height="19.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                             <color key="textColor" name="colorMetal"/>
                                                             <nil key="highlightedColor"/>
@@ -2634,16 +2634,13 @@
         <namedColor name="colorPrimary">
             <color red="0.72549019607843135" green="0.19215686274509805" blue="0.30980392156862746" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <namedColor name="colorRed">
-            <color red="0.80000000000000004" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
         <namedColor name="colorWhite">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="Fwl-zS-Xb5"/>
-        <segue reference="ada-jw-KCe"/>
-        <segue reference="pmG-ee-7lD"/>
+        <segue reference="0ay-Dn-agn"/>
+        <segue reference="ckz-e5-bck"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -15,7 +15,12 @@ class NotificationsCollectionViewCell: UICollectionViewCell {
         self.notification=notification
         messageLabel.text=notification.message
         dateTimeLabel.text=notification.dateTime
-        deviceNameLabel.text=localRepository.getDeviceByUserId(userId: notification.deviceUserId!)!.name!
+        
+        let device=localRepository.getDeviceByUserId(userId: notification.deviceUserId!)
+        if device != nil {
+            deviceNameLabel.text=device!.name!
+        }
+        
         
         initImages()
     }
