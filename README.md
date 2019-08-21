@@ -7,7 +7,7 @@ The Remote Controller is the software component of the HyperConnect IoT Framewor
 ### Installation
 
 #### (Option One) Download from Apple App Store
-- Coming soon.
+- Using Apple's TestFlight: https://testflight.apple.com/join/oGk6CdKj
 
 #### (Option Two) Build from source code
 **Step 1.** Download the source code for XCode from: https://github.com/cyber-republic/hyperconnect-remote-controller-ios
