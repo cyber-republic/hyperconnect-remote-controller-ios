@@ -3,7 +3,7 @@
 
 import Foundation
 import SystemConfiguration
-import ElastosCarrier
+import ElastosCarrierSDK
 
 /// The `NetworkReachabilityManager` class listens for reachability changes of hosts and addresses for both WWAN and
 /// WiFi network interfaces.
