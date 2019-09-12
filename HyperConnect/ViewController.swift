@@ -1,6 +1,6 @@
 
 import UIKit
-import ElastosCarrierSDK
+import ElastosCarrier
 import MaterialComponents.MaterialBottomNavigation
 import SwiftyJSON
 

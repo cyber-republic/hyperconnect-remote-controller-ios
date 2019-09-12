@@ -42,7 +42,7 @@ class HistoryViewController: UIViewController, ChartViewDelegate {
                 x+=1
             }
             
-            let set=LineChartDataSet(entries: values, label: "Live Data")
+            let set=LineChartDataSet(values: values, label: "Live Data")
             set.setColor(UIColor.init(named: "colorMetal")!)
             set.setCircleColor(UIColor.init(named: "colorMetal")!)
             let data=LineChartData(dataSet: set)

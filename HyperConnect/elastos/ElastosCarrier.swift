@@ -1,6 +1,6 @@
 
 import Foundation
-import ElastosCarrierSDK
+import ElastosCarrier
 import SwiftyJSON
 
 class ElastosCarrier : NSObject {
@@ -35,7 +35,7 @@ class ElastosCarrier : NSObject {
     
     override init() {
         //Carrier.setLogLevel(.Debug)
-        //Carrier.setLogLevel(.None)
+        Carrier.setLogLevel(.None)
     }
     
     public func setHistoryVC(historyVC: HistoryViewController){
