@@ -35,7 +35,7 @@ class ElastosCarrier : NSObject {
     
     override init() {
         //Carrier.setLogLevel(.Debug)
-        Carrier.setLogLevel(.None)
+        //Carrier.setLogLevel(.None)
     }
     
     public func setHistoryVC(historyVC: HistoryViewController){
