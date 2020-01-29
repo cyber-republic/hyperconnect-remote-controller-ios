@@ -410,6 +410,7 @@ class AddEventViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "actionHome" {
             let viewVC=segue.destination as! ViewController
+            viewVC.modalPresentationStyle = .fullScreen
             viewVC.currentPageIndex=fromPageIndex
         }
     }

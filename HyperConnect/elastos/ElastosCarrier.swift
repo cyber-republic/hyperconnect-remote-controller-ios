@@ -1,6 +1,6 @@
 
 import Foundation
-import ElastosCarrier
+import ElastosCarrierSDK
 import SwiftyJSON
 
 class ElastosCarrier : NSObject {
@@ -9,6 +9,13 @@ class ElastosCarrier : NSObject {
     var connected=false
     var localRepository=LocalRepository.sharedInstance
     var historyVC:HistoryViewController!
+    
+    var fileTransferManager:CarrierFileTransferManager!
+    var fileTransfer:CarrierFileTransfer!
+    var transferDelegate:TransferDelegate!
+    var fileTransferState:CarrierFileTransferConnectionState!
+    var currentFileTransferUserId:String=""
+    var currentFileName:String="file.json"
     
     static let SelfInfoChanged = NSNotification.Name("kNotificationSelfInfoChanged")
     static let DeviceListChanged = NSNotification.Name("kNotificationDeviceListChanged")
@@ -47,7 +54,9 @@ class ElastosCarrier : NSObject {
     }
     
     public func kill() {
+        //print("kill")
         connected=false
+        fileTransferManager.cleanup()
         sharedInstance.kill()
     }
     
@@ -126,14 +135,43 @@ class ElastosCarrier : NSObject {
             
             
             sharedInstance = Carrier.sharedInstance()
-            
+    
             try! sharedInstance.start(iterateInterval: 1000)
             //print("carrier started, waiting for ready")
             
             
+            let historyDir:String=NSSearchPathForDirectoriesInDomains(.libraryDirectory, .userDomainMask, true)[0] + "/history"
+            if !FileManager.default.fileExists(atPath: historyDir) {
+                var url = URL(fileURLWithPath: historyDir)
+                try FileManager.default.createDirectory(at: url, withIntermediateDirectories: true, attributes: nil)
+                var resourceValues = URLResourceValues()
+                resourceValues.isExcludedFromBackup = true
+                try url.setResourceValues(resourceValues)
+            }
+            //print("historyDir: "+historyDir)
+            
+            try CarrierFileTransferManager.initializeSharedInstance(carrier: sharedInstance) { (_ carrier: Carrier, _ from: String, _ fileInfo: CarrierFileTransferInfo) in
+                print("connectRequest - from: "+from)
+                do {
+                    if !(from == self.currentFileTransferUserId && self.fileTransferState == .Connected) {
+                        self.currentFileTransferUserId=from
+                        self.transferDelegate=TransferDelegate(userId: from)
+                        self.fileTransfer=try self.fileTransferManager.createFileTransfer(to: from, withFileInfo: fileInfo, delegate: self.transferDelegate)
+                        try self.fileTransfer.acceptConnectionRequest()
+                    }
+                }
+                catch{}
+            }
+            fileTransferManager=CarrierFileTransferManager.sharedInstance()
         }
         catch {
             NSLog("Start carrier instance error : \(error.localizedDescription)")
+        }
+    }
+    
+    public func closeFileTransfer() {
+        DispatchQueue.main.async {
+            self.fileTransfer.close()
         }
     }
     
@@ -228,7 +266,7 @@ extension ElastosCarrier : CarrierDelegate {
     }
     
     func friendConnectionDidChange(_ carrier: Carrier, _ friendId: String, _ newStatus: CarrierConnectionStatus) {
-        //print("MainDelegate - friendConnectionDidChange - "+friendId+" - "+newStatus.description)
+        print("MainDelegate - friendConnectionDidChange - "+friendId+" - "+newStatus.description)
         let device=localRepository.getDeviceByUserId(userId: friendId)
         if device != nil {
             if newStatus == CarrierConnectionStatus.Connected {
@@ -257,6 +295,7 @@ extension ElastosCarrier : CarrierDelegate {
             }
             else if newStatus == CarrierConnectionStatus.Disconnected {
                 device?.connectionState=DeviceConnectionState.OFFLINE.value
+                fileTransferState = .Closed
             }
             localRepository.updateDatabase()
         }
@@ -276,7 +315,7 @@ extension ElastosCarrier : CarrierDelegate {
         //print("MainDelegate - friendRemoved - "+friendId)
     }
     
-    func didReceiveFriendMessage(_ carrier: Carrier, _ from: String, _ data: Data) {
+    func didReceiveFriendMessage(_ carrier: Carrier, _ from: String, _ data: Data, _ isOffline: Bool) {
         let messageText=String(data: data, encoding: .utf8)!
         //print("MainDelegate - didReceiveFriendMessage - "+from+" - "+messageText)
         
@@ -496,7 +535,7 @@ extension ElastosCarrier : CarrierDelegate {
                     dataRecordList.append(dataRecord)
                 }
                 if historyVC != nil {
-                    historyVC.setDataList(dataList: dataRecordList)
+                    historyVC.setLiveDataList(dataList: dataRecordList)
                 }
             }
             else if command == "changeControllerState" {
@@ -520,6 +559,105 @@ extension ElastosCarrier : CarrierDelegate {
 }
 
 
-
-
-
+class TransferDelegate : CarrierFileTransferDelegate {
+    var userId:String=""
+    var filePath:String=""
+    var receiveDataLen:UInt64=0
+    var receiveFileSize:UInt64=0
+    var tempPercent:Int = -1
+    var finalData:Data!
+    
+    init(userId:String) {
+        self.userId=userId
+    }
+    
+    func fileTransferStateDidChange(_ fileTransfer: CarrierFileTransfer, _ newState: CarrierFileTransferConnectionState) {
+        print("TransferDelegate - fileTransferStateDidChange - "+newState.description)
+        ElastosCarrier.sharedInstance.fileTransferState=newState
+        if newState == .Error || newState == .Closed {
+            if newState == .Error {
+                ElastosCarrier.sharedInstance.historyVC.showError()
+                ElastosCarrier.sharedInstance.fileTransfer.close()
+            }
+            let jsonObject:JSON=[
+                "command": "cleanFileTransfer",
+                "state": newState.description
+            ]
+            ElastosCarrier.sharedInstance.sendFriendMessage(userId: userId, message: jsonObject.description)
+        }
+    }
+    
+    func didReceiveFileRequest(_ fileTransfer: CarrierFileTransfer, _ fileId: String, _ fileName: String, _ fileSize: UInt64) {
+        print("TransferDelegate - didReceiveFileRequest - "+fileId+" - "+fileName)
+        receiveDataLen=0
+        receiveFileSize=fileSize
+        tempPercent = -1
+        finalData=nil
+        
+        let localFileName:String=ElastosCarrier.sharedInstance.currentFileName
+        let deviceDir:String=NSSearchPathForDirectoriesInDomains(.libraryDirectory, .userDomainMask, true)[0] + "/history/"+userId
+        if !FileManager.default.fileExists(atPath: deviceDir) {
+            do {
+                var url = URL(fileURLWithPath: deviceDir)
+                try FileManager.default.createDirectory(at: url, withIntermediateDirectories: true, attributes: nil)
+                var resourceValues = URLResourceValues()
+                resourceValues.isExcludedFromBackup = true
+                try url.setResourceValues(resourceValues)
+            }
+            catch{}
+        }
+        filePath=deviceDir+"/"+localFileName
+        
+        do {
+            try fileTransfer.sendPullRequest(fileId: fileId, withOffset: 0)
+        }
+        catch{}
+    }
+    
+    func didReceivePullRequest(_ fileTransfer: CarrierFileTransfer, _ fileId: String, _ offset: UInt64) {
+        
+    }
+    
+    func didReceiveFileTransferData(_ fileTransfer: CarrierFileTransfer, _ fileId: String, _ data: Data) -> Bool {
+        print("TransferDelegate - didReceiveFileTransferData")
+        receiveDataLen+=UInt64.init(data.count)
+        let percent:Int=(Int)(receiveDataLen*100/receiveFileSize)
+        
+        if tempPercent != percent {
+            print("onData "+percent.description+"%")
+        }
+        tempPercent=percent
+        
+        if finalData == nil {
+            finalData=data
+        }
+        else{
+            finalData.append(data)
+        }
+        
+        print("receiveFileSize: "+receiveFileSize.description+", receiveDataLen: "+receiveDataLen.description)
+        if receiveFileSize == receiveDataLen {
+            print("Receiving finished")
+            print("filePath: "+filePath)
+            do {
+                try finalData.write(to: URL(fileURLWithPath: filePath), options: .atomic)
+            }
+            catch{}
+            
+            ElastosCarrier.sharedInstance.historyVC.showData()
+        }
+        return true
+    }
+    
+    func fileTransferPending(_ fileTransfer: CarrierFileTransfer, _ fileId: String) {
+        
+    }
+    
+    func fileTransferResumed(_ fileTransfer: CarrierFileTransfer, _ fileId: String) {
+        
+    }
+    
+    func fileTransferWillCancel(_ fileTransfer: CarrierFileTransfer, _ fileId: String, _ status: Int, _ reason: String) {
+        
+    }
+}

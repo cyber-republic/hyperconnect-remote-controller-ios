@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -15,6 +15,7 @@
 		7B0ECA8A22FF48CF0034036C /* DialogFilterCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B0ECA8922FF48CF0034036C /* DialogFilterCategoryViewController.swift */; };
 		7B0ECA8C22FF4F1F0034036C /* FilterCategoriesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B0ECA8B22FF4F1F0034036C /* FilterCategoriesCollectionViewCell.swift */; };
 		7B0ECA8E22FF59CF0034036C /* CategoriesSensorCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B0ECA8D22FF59CF0034036C /* CategoriesSensorCollectionViewCell.swift */; };
+		7B4D612F23DDE310006D0054 /* HistoryManagement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B4D612E23DDE310006D0054 /* HistoryManagement.swift */; };
 		7BA5F92B22FADD9300A11198 /* SensorsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA5F92A22FADD9300A11198 /* SensorsCollectionViewCell.swift */; };
 		7BA5F92D22FAE56500A11198 /* AttributesInputCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA5F92C22FAE56500A11198 /* AttributesInputCollectionViewCell.swift */; };
 		7BA5F92F22FB098A00A11198 /* AttributesOutputCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA5F92E22FB098A00A11198 /* AttributesOutputCollectionViewCell.swift */; };
@@ -77,6 +78,7 @@
 		7B0ECA8922FF48CF0034036C /* DialogFilterCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialogFilterCategoryViewController.swift; sourceTree = "<group>"; };
 		7B0ECA8B22FF4F1F0034036C /* FilterCategoriesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterCategoriesCollectionViewCell.swift; sourceTree = "<group>"; };
 		7B0ECA8D22FF59CF0034036C /* CategoriesSensorCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesSensorCollectionViewCell.swift; sourceTree = "<group>"; };
+		7B4D612E23DDE310006D0054 /* HistoryManagement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryManagement.swift; sourceTree = "<group>"; };
 		7BA5F92A22FADD9300A11198 /* SensorsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorsCollectionViewCell.swift; sourceTree = "<group>"; };
 		7BA5F92C22FAE56500A11198 /* AttributesInputCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttributesInputCollectionViewCell.swift; sourceTree = "<group>"; };
 		7BA5F92E22FB098A00A11198 /* AttributesOutputCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttributesOutputCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -184,6 +186,7 @@
 			children = (
 				7BB2837B2300A28A0029B7A3 /* concurrent */,
 				7BB283792300A2830029B7A3 /* AttributeManagement.swift */,
+				7B4D612E23DDE310006D0054 /* HistoryManagement.swift */,
 			);
 			path = management;
 			sourceTree = "<group>";
@@ -428,28 +431,11 @@
 			files = (
 			);
 			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-HyperConnect/Pods-HyperConnect-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
-				"${PODS_ROOT}/ElastosCarrierSDK/ElastosCarrier-framework/ElastosCarrier.framework",
-				"${BUILT_PRODUCTS_DIR}/MDFInternationalization/MDFInternationalization.framework",
-				"${BUILT_PRODUCTS_DIR}/MDFTextAccessibility/MDFTextAccessibility.framework",
-				"${BUILT_PRODUCTS_DIR}/MaterialComponents/MaterialComponents.framework",
-				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
-				"${BUILT_PRODUCTS_DIR}/iOSDropDown/iOSDropDown.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-HyperConnect/Pods-HyperConnect-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ElastosCarrier.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MDFInternationalization.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MDFTextAccessibility.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MaterialComponents.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/iOSDropDown.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-HyperConnect/Pods-HyperConnect-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -471,7 +457,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"${SRCROOT}/Pods/ElastosCarrierSDK/ElastosCarrier-framework/CocoaPods/codesigncarrierframework.sh\"\n";
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n#\"${SRCROOT}/Pods/ElastosCarrierSDK/ElastosCarrier-framework/CocoaPods/codesigncarrierframework.sh\"\n";
 		};
 		E207C295276BFA1B5CE6C656 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -525,6 +511,7 @@
 				7BCCB18022DA73CC003F632C /* ElastosCarrier.swift in Sources */,
 				7B0ECA8222FED1B70034036C /* DialogAddCategoryViewController.swift in Sources */,
 				7BCB724222F686A70085098C /* LocalRepository.swift in Sources */,
+				7B4D612F23DDE310006D0054 /* HistoryManagement.swift in Sources */,
 				7BA6F2B722DB043F00E219C8 /* EventsCollectionViewCell.swift in Sources */,
 				7BA5F92F22FB098A00A11198 /* AttributesOutputCollectionViewCell.swift in Sources */,
 				7BA8B52122F97B7C00711C7D /* NotificationCategory.swift in Sources */,
@@ -703,12 +690,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = G8G4RU5HYC;
 				INFOPLIST_FILE = HyperConnect/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.hyper.connect.HyperConnect;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -722,12 +711,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = G8G4RU5HYC;
 				INFOPLIST_FILE = HyperConnect/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.hyper.connect.HyperConnect;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;

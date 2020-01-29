@@ -22,10 +22,12 @@ class DevicesViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "actionAddDevice" {
             let addDeviceVC=segue.destination as! AddDeviceViewController
+            addDeviceVC.modalPresentationStyle = .fullScreen
             addDeviceVC.fromPageIndex=pageIndex
         }
         else if segue.identifier == "actionSensors" {
             let sensorsVC=segue.destination as! SensorsViewController
+            sensorsVC.modalPresentationStyle = .fullScreen
             sensorsVC.fromPageIndex=pageIndex
             sensorsVC.device=sender as? Device
             if selectedCategory != nil {
@@ -34,6 +36,7 @@ class DevicesViewController: UIViewController {
         }
         else if segue.identifier == "actionNotifications" {
             let notificationsVC=segue.destination as! NotificationsViewController
+            notificationsVC.modalPresentationStyle = .fullScreen
             notificationsVC.fromPageIndex=pageIndex
             notificationsVC.device=sender as? Device
         }

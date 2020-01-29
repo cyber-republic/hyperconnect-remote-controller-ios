@@ -120,6 +120,13 @@ class LocalRepository {
         localDatabase.deleteAttribute(attribute: attribute)
     }
     
+    func deleteDeviceData(device: Device) {
+        let sensorList=getSensorListByDevice(device: device)
+        for sensor in sensorList {
+            deleteSensor(sensor: sensor)
+        }
+    }
+    
     func getEventByGlobalEventId(globalEventId: String) -> Event? {
         return localDatabase.getEventByGlobalEventId(globalEventId: globalEventId)
     }

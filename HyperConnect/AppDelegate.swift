@@ -17,10 +17,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         elastosCarrier.start()
         
-        let statusBar:UIView=UIApplication.shared.value(forKey: "statusBar") as! UIView
-        if statusBar.responds(to: #selector(setter: UIView.backgroundColor)) {
+        
+        
+        
+        //let statusBarFrame:CGRect
+        /*if #available(iOS 13.0, *) {
+            let statusBar=UIView(frame: (UIApplication.shared.keyWindow?.windowScene?.statusBarManager?.statusBarFrame)!)
             statusBar.backgroundColor=UIColor.init(named: "colorPrimary")
-        }
+            UIApplication.shared.keyWindow?.addSubview(statusBar)
+        }*/
+        
+        /*guard #available(iOS 13.0, *) else {
+            let statusBar:UIView=UIApplication.shared.value(forKey: "statusBar") as! UIView
+            if statusBar.responds(to: #selector(setter: UIView.backgroundColor)) {
+                statusBar.backgroundColor=UIColor.init(named: "colorPrimary")
+            }
+            return true
+        }*/
         
         return true
     }

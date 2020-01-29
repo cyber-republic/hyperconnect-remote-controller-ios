@@ -43,10 +43,12 @@ class SensorsViewController: UIViewController {
         if segue.identifier == "actionHome" {
             attributeManagement.stopAllAttributes()
             let viewVC=segue.destination as! ViewController
+            viewVC.modalPresentationStyle = .fullScreen
             viewVC.currentPageIndex=fromPageIndex
         }
         else if segue.identifier == "actionHistory" {
             let historyVC=segue.destination as! HistoryViewController
+            historyVC.modalPresentationStyle = .fullScreen
             historyVC.fromPageIndex=fromPageIndex
             historyVC.attribute=sender as? Attribute
             historyVC.device=device

@@ -21,6 +21,7 @@ class EventsViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "actionAddEvent" {
             let addEventVC=segue.destination as! AddEventViewController
+            addEventVC.modalPresentationStyle = .fullScreen
             addEventVC.fromPageIndex=pageIndex
         }
     }

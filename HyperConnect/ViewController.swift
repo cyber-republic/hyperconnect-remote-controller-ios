@@ -4,11 +4,11 @@ import MaterialComponents.MaterialBottomNavigation
 import SwiftyJSON
 
 class ViewController: UIViewController {
-    
+
     @IBOutlet weak var bottomBarView: UIView!
-    
+
     var bottomBar:MDCBottomNavigationBar!
-    
+
     var pageController:UIPageViewController!
     fileprivate lazy var pages: [UIViewController] = {
         return [
@@ -18,18 +18,18 @@ class ViewController: UIViewController {
         ]
     }()
     var currentPageIndex:Int=0
-    
+
     fileprivate func getViewController(withIdentifier identifier: String) -> UIViewController {
         return UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: identifier)
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         initBottomBar()
         initPageController()
     }
-    
+
     func initBottomBar(){
         bottomBar=MDCBottomNavigationBar(frame: CGRect(origin: CGPoint.zero, size: CGSize(width: bottomBarView.bounds.width, height: 56.0)))
         bottomBar.items = [
@@ -49,7 +49,7 @@ class ViewController: UIViewController {
         bottomBar.delegate=self
         bottomBarView.addSubview(bottomBar)
     }
-    
+
     func initPageController() {
         pageController.delegate=self
         pageController.dataSource=self
@@ -67,6 +67,7 @@ class ViewController: UIViewController {
         }
         else if segue.identifier=="actionNotifications" {
             let notificationsVC=segue.destination as! NotificationsViewController
+            notificationsVC.modalPresentationStyle = . fullScreen
             notificationsVC.fromPageIndex=currentPageIndex
         }
     }
@@ -92,42 +93,42 @@ extension ViewController: MDCBottomNavigationBarDelegate{
 extension ViewController: UIPageViewControllerDelegate, UIPageViewControllerDataSource{
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         guard let viewControllerIndex=pages.firstIndex(of: viewController) else { return nil }
-        
+
         if viewControllerIndex == 0 {
             return nil
         }
-        
+
         let previousIndex=viewControllerIndex-1
-        
+
         guard previousIndex >= 0 else { return pages.last }
-        
+
         guard pages.count > previousIndex else { return nil }
-        
+
         return pages[previousIndex]
     }
-    
+
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
         guard let viewControllerIndex=pages.firstIndex(of: viewController) else { return nil }
-        
+
         if viewControllerIndex == 2 {
             return nil
         }
-        
+
         let nextIndex=viewControllerIndex+1
-        
+
         guard nextIndex < pages.count else { return pages.first }
-        
+
         guard pages.count > nextIndex else { return nil }
-        
+
         return pages[nextIndex]
     }
-    
+
     func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
-        
+
         let pageContentViewController=pageViewController.viewControllers![0]
         let viewControllerIndex=pages.firstIndex(of: pageContentViewController)
         currentPageIndex=viewControllerIndex!
-        
+
         if finished && completed {
             let bottomBarItem=bottomBar.items[currentPageIndex]
             bottomBar.selectedItem=bottomBarItem
